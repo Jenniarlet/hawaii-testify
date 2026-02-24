@@ -1,19 +1,30 @@
 import { useState, useEffect } from "react";
 import { getProfile } from "./utils/storage";
+import { fetchHawaiiBills } from "./utils/legiscan";
 import Onboarding from "./components/Onboarding";
 import SwipeFeed from "./components/SwipeFeed";
 import Prompts from "./components/Prompts";
 import TestimonyView from "./components/TestimonyView";
 import SubmitScreen from "./components/SubmitScreen";
 
-// Screens: onboarding | feed | prompts | testimony | submit
 export default function App() {
   const [screen, setScreen] = useState("loading");
   const [profile, setProfile] = useState(null);
+  const [bills, setBills] = useState([]);
+  const [billsLoading, setBillsLoading] = useState(true);
   const [selectedBill, setSelectedBill] = useState(null);
   const [promptData, setPromptData] = useState(null);
-  const [feedKey, setFeedKey] = useState(0); // reset feed after submit
+  const [feedKey, setFeedKey] = useState(0);
 
+  // Load bills from LegiScan (or mock fallback) on mount
+  useEffect(() => {
+    fetchHawaiiBills().then((b) => {
+      setBills(b);
+      setBillsLoading(false);
+    });
+  }, []);
+
+  // Check if user has already onboarded
   useEffect(() => {
     const saved = getProfile();
     if (saved) {
@@ -35,7 +46,7 @@ export default function App() {
   }
 
   function handleAllDone() {
-    setScreen("feed"); // stays on feed, shows the all-done state
+    setScreen("feed");
   }
 
   function handlePromptsSubmit(data) {
@@ -46,10 +57,6 @@ export default function App() {
   function handlePromptsBack() {
     setScreen("feed");
     setSelectedBill(null);
-  }
-
-  function handleTestimonyBack() {
-    setScreen("prompts");
   }
 
   function handleGoToSubmit() {
@@ -76,14 +83,25 @@ export default function App() {
       {screen === "onboarding" && (
         <Onboarding onComplete={handleOnboardingComplete} />
       )}
+
       {screen === "feed" && (
-        <SwipeFeed
-          key={feedKey}
-          profile={profile}
-          onSwipeRight={handleSwipeRight}
-          onAllDone={handleAllDone}
-        />
+        billsLoading ? (
+          <div className="flex flex-col items-center justify-center h-full bg-ocean-900 gap-4">
+            <div className="text-5xl animate-pulse">🌺</div>
+            <p className="text-ocean-300 text-sm font-medium">Loading Hawaii State Legislature bills…</p>
+            <p className="text-ocean-600 text-xs">Powered by LegiScan</p>
+          </div>
+        ) : (
+          <SwipeFeed
+            key={feedKey}
+            bills={bills}
+            profile={profile}
+            onSwipeRight={handleSwipeRight}
+            onAllDone={handleAllDone}
+          />
+        )
       )}
+
       {screen === "prompts" && selectedBill && (
         <Prompts
           bill={selectedBill}
@@ -91,15 +109,17 @@ export default function App() {
           onSkip={handlePromptsBack}
         />
       )}
+
       {screen === "testimony" && selectedBill && promptData && (
         <TestimonyView
           bill={selectedBill}
           profile={profile}
           promptData={promptData}
-          onBack={handleTestimonyBack}
+          onBack={() => setScreen("prompts")}
           onSubmit={handleGoToSubmit}
         />
       )}
+
       {screen === "submit" && selectedBill && (
         <SubmitScreen
           bill={selectedBill}

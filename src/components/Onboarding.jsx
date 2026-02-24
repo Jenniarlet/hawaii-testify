@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { NEIGHBORHOODS, ROLES, INTERESTS } from "../data/options";
+import { ISLANDS, ROLES, INTERESTS } from "../data/options";
 import { saveProfile } from "../utils/storage";
 
-const STEPS = ["neighborhood", "role", "interests"];
+const STEPS = ["island", "role", "interests"];
 
 export default function Onboarding({ onComplete }) {
   const [step, setStep] = useState(0);
-  const [neighborhood, setNeighborhood] = useState(null);
+  const [island, setIsland] = useState(null);
   const [role, setRole] = useState(null);
   const [interests, setInterests] = useState([]);
 
@@ -20,14 +20,14 @@ export default function Onboarding({ onComplete }) {
     if (step < STEPS.length - 1) {
       setStep((s) => s + 1);
     } else {
-      const profile = { neighborhood, role, interests };
+      const profile = { island, role, interests };
       saveProfile(profile);
       onComplete(profile);
     }
   }
 
   const canProceed =
-    (step === 0 && neighborhood) ||
+    (step === 0 && island) ||
     (step === 1 && role) ||
     (step === 2 && interests.length >= 3);
 
@@ -40,7 +40,7 @@ export default function Onboarding({ onComplete }) {
             <div className="text-4xl mb-3">🌺</div>
             <h1 className="text-2xl font-bold leading-tight">Welcome to HawaiiTestify</h1>
             <p className="text-ocean-300 mt-2 text-sm leading-relaxed">
-              Your voice matters at Honolulu Hale. Let's personalize your experience.
+              Your voice matters at the Hawaii State Legislature. Let's personalize your experience.
             </p>
           </div>
         )}
@@ -60,7 +60,7 @@ export default function Onboarding({ onComplete }) {
         )}
       </div>
 
-      {/* Progress dots */}
+      {/* Progress bar */}
       <div className="flex gap-2 px-6 mb-4">
         {STEPS.map((_, i) => (
           <div
@@ -77,15 +77,15 @@ export default function Onboarding({ onComplete }) {
         {step === 0 && (
           <div>
             <p className="text-ocean-300 text-sm font-medium uppercase tracking-wider mb-3">
-              Where do you live on Oʻahu?
+              Which island are you on?
             </p>
             <div className="grid grid-cols-2 gap-3">
-              {NEIGHBORHOODS.map((n) => (
+              {ISLANDS.map((n) => (
                 <button
                   key={n.id}
-                  onClick={() => setNeighborhood(n.id)}
+                  onClick={() => setIsland(n.id)}
                   className={`flex items-center gap-3 p-4 rounded-2xl border-2 text-left transition-all duration-150 ${
-                    neighborhood === n.id
+                    island === n.id
                       ? "border-ocean-400 bg-ocean-800 scale-[0.98]"
                       : "border-ocean-700 bg-ocean-800/40"
                   }`}
@@ -152,7 +152,7 @@ export default function Onboarding({ onComplete }) {
         )}
       </div>
 
-      {/* CTA Button */}
+      {/* CTA */}
       <div className="px-6 pb-10 pt-4">
         <button
           onClick={handleNext}

@@ -1,46 +1,40 @@
-export default function SubmitScreen({ bill, testimony, onDone }) {
-  const councilEmail = "council@honolulu.gov";
-  const subject = encodeURIComponent(`Testimony on Bill ${bill.number} — ${bill.title}`);
+export default function SubmitScreen({ bill, onDone }) {
+  const subject = encodeURIComponent(`Testimony on ${bill.type} ${bill.number} — ${bill.title}`);
+  const committeeEmail = "testimony@capitol.hawaii.gov";
 
   const steps = [
     {
-      number: "1",
-      icon: "📋",
+      number: "1", icon: "📋",
       title: "Copy your testimony",
-      description: "Go back and copy your full testimony to your clipboard.",
+      description: "Go back and copy your full testimony to your clipboard. Replace the [bracketed] fields with your real name, address, and contact info.",
     },
     {
-      number: "2",
-      icon: "🌐",
-      title: "Visit the Honolulu City Council website",
-      description:
-        "Go to honolulu.gov/council and find the \"Submit Testimony\" link under the relevant committee.",
+      number: "2", icon: "🌐",
+      title: "Submit online via the Capitol website",
+      description: "The Hawaii State Legislature accepts written testimony directly through their website — no account needed.",
       action: {
-        label: "Open Honolulu City Council →",
-        url: "https://www.honolulu.gov/council",
+        label: "Submit at capitol.hawaii.gov →",
+        url: bill.stateLink || "https://www.capitol.hawaii.gov/",
       },
     },
     {
-      number: "3",
-      icon: "✉️",
-      title: "Or email directly to the committee",
-      description: `Email your testimony to ${councilEmail} with the subject line "Testimony on Bill ${bill.number}."`,
+      number: "3", icon: "✉️",
+      title: "Or email your testimony",
+      description: `Email your testimony to ${committeeEmail} with "${bill.type} ${bill.number}" in the subject line. This goes directly into the legislative record.`,
       action: {
-        label: `Email council@honolulu.gov →`,
-        url: `mailto:${councilEmail}?subject=${subject}`,
+        label: "Email testimony@capitol.hawaii.gov →",
+        url: `mailto:${committeeEmail}?subject=${subject}`,
       },
     },
     {
-      number: "4",
-      icon: "📅",
+      number: "4", icon: "📅",
       title: "Submit before the hearing",
-      description: `The hearing for Bill ${bill.number} is on ${bill.hearingDate} at ${bill.hearingTime}. Submit at least 24 hours before for the record.`,
+      description: `The hearing for ${bill.type} ${bill.number} is ${bill.hearingDate}${bill.hearingTime ? ` at ${bill.hearingTime}` : ""}. Submit at least 24 hours before so it's included in the official record.`,
     },
     {
-      number: "5",
-      icon: "🎤",
+      number: "5", icon: "🎤",
       title: "Testify in person (optional)",
-      description: `You can also testify in person at ${bill.location}. Sign in 15 minutes before the start time. You'll have 3 minutes to speak.`,
+      description: `You can also testify in person at ${bill.location}. Sign in 15 minutes before the hearing. You'll have 3 minutes to speak. Remote testimony via Zoom is often available too.`,
     },
   ];
 
@@ -49,16 +43,12 @@ export default function SubmitScreen({ bill, testimony, onDone }) {
       {/* Header */}
       <div
         className="px-6 pt-14 pb-8"
-        style={{
-          background: `linear-gradient(180deg, ${bill.gradientFrom} 0%, #0c4a6e 100%)`,
-        }}
+        style={{ background: `linear-gradient(180deg, ${bill.gradientFrom} 0%, #0c4a6e 100%)` }}
       >
         <div className="text-4xl mb-3">{bill.emoji}</div>
-        <h2 className="text-white text-2xl font-bold leading-tight">
-          You're Ready to Testify!
-        </h2>
+        <h2 className="text-white text-2xl font-bold leading-tight">You're Ready to Testify!</h2>
         <p className="text-white/70 text-sm mt-2">
-          Bill {bill.number} · {bill.hearingDate}
+          {bill.type} {bill.number} · {bill.hearingDate}
         </p>
         <div className="mt-4 bg-white/10 rounded-2xl px-4 py-3 backdrop-blur-sm">
           <p className="text-white/90 text-sm font-medium">{bill.committee}</p>
@@ -75,23 +65,19 @@ export default function SubmitScreen({ bill, testimony, onDone }) {
         {steps.map((step) => (
           <div key={step.number} className="bg-ocean-800 rounded-2xl p-4">
             <div className="flex items-start gap-4">
-              <div className="w-8 h-8 rounded-full bg-ocean-700 flex items-center justify-center text-sm flex-shrink-0 mt-0.5">
+              <div className="w-8 h-8 rounded-full bg-ocean-700 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <span className="text-lg">{step.icon}</span>
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-ocean-500 text-xs font-bold">
-                    STEP {step.number}
-                  </span>
-                </div>
-                <p className="text-white font-semibold text-sm mb-1">{step.title}</p>
+                <span className="text-ocean-500 text-xs font-bold">STEP {step.number}</span>
+                <p className="text-white font-semibold text-sm mb-1 mt-0.5">{step.title}</p>
                 <p className="text-ocean-400 text-xs leading-relaxed">{step.description}</p>
                 {step.action && (
                   <a
                     href={step.action.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center mt-2 text-ocean-400 text-xs font-semibold border border-ocean-600 rounded-full px-3 py-1.5 hover:bg-ocean-700 transition-colors"
+                    className="inline-flex items-center mt-2 text-ocean-400 text-xs font-semibold border border-ocean-600 rounded-full px-3 py-1.5"
                   >
                     {step.action.label}
                   </a>
@@ -101,17 +87,16 @@ export default function SubmitScreen({ bill, testimony, onDone }) {
           </div>
         ))}
 
-        {/* Mahalo card */}
         <div className="bg-gradient-to-r from-palm-900 to-ocean-900 border border-palm-800 rounded-2xl p-5 text-center">
           <div className="text-3xl mb-2">🌺</div>
           <p className="text-white font-bold mb-1">Mahalo for your civic engagement!</p>
           <p className="text-ocean-400 text-xs leading-relaxed">
-            Every testimony matters. The Honolulu City Council is required to read all submitted written testimony before voting.
+            Every testimony matters. Hawaii legislators are required to read all submitted written testimony before voting.
           </p>
         </div>
       </div>
 
-      {/* Done button */}
+      {/* Done */}
       <div className="px-6 pb-10 pt-4">
         <button
           onClick={onDone}

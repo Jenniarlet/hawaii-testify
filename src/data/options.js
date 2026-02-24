@@ -1,12 +1,10 @@
-export const NEIGHBORHOODS = [
-  { id: "downtown", label: "Downtown / Pauoa", emoji: "🏙️" },
-  { id: "kailua", label: "Kailua / Kāneʻohe", emoji: "🌿" },
-  { id: "kapolei", label: "Kapolei / ʻEwa Beach", emoji: "🌅" },
-  { id: "manoa", label: "Mānoa / Nuʻuanu", emoji: "🌧️" },
-  { id: "waikiki", label: "Waikīkī / Mōʻiliʻili", emoji: "🏖️" },
-  { id: "aiea", label: "ʻAiea / Pearl City", emoji: "⚓" },
-  { id: "waianae", label: "Waiʻanae Coast", emoji: "🌺" },
-  { id: "northshore", label: "North Shore", emoji: "🏄" },
+export const ISLANDS = [
+  { id: "oahu", label: "Oʻahu", emoji: "🌆" },
+  { id: "maui", label: "Maui", emoji: "🌄" },
+  { id: "hawaii", label: "Hawaiʻi Island", emoji: "🌋" },
+  { id: "kauai", label: "Kauaʻi", emoji: "🌿" },
+  { id: "molokai", label: "Molokaʻi", emoji: "🏝️" },
+  { id: "lanai", label: "Lānaʻi", emoji: "🌅" },
 ];
 
 export const ROLES = [
