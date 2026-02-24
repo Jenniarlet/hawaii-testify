@@ -1,0 +1,18 @@
+{
+  "name": "HawaiiTestify",
+  "short_name": "HawaiiTestify",
+  "description": "Discover Hawaii legislation and generate personalized testimony",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c4a6e",
+  "theme_color": "#0c4a6e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
