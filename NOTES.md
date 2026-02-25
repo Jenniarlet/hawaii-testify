@@ -96,6 +96,15 @@ hawaii-testify/
 ## How to Update Bills (Manual Override)
 Edit `src/data/bills.js` — these are the fallback mock bills shown when the API is unavailable. To find real bill numbers: https://www.capitol.hawaii.gov/
 
+> ⚠️ **Always verify mock bill numbers against the real session.** Bill numbers are session-specific and don't carry over year to year. Cross-check at:
+> - Hawaii Legislature: https://www.capitol.hawaii.gov/
+> - LegiScan Hawaii: https://legiscan.com/HI
+>
+> **Verified 2026 corrections (via Gemini cross-check, Feb 2026):**
+> - HB 1949 = Green Fee (visitor environmental fee) — https://www.capitol.hawaii.gov/session/measure_indiv.aspx?billtype=HB&billnumber=1949&year=2026
+> - SB 2361 = Single-use Plastics Ban — https://www.capitol.hawaii.gov/session/measure_indiv.aspx?billtype=SB&billnumber=2361&year=2026
+> - Other mock bills (HB 1234, SB 456, etc.) are illustrative placeholders — verify before publishing publicly
+
 ---
 
 ## How to Run Locally
