@@ -1,4 +1,26 @@
-// Transforms raw LegiScan getBill response into HawaiiTestify's bill format
+// =============================================================================
+// src/utils/billTransform.js — LegiScan Bill Transformer
+// =============================================================================
+// What it is:
+//   Converts the raw JSON shape returned by LegiScan's getBill API call into
+//   the canonical bill object shape that all HawaiiTestify components expect.
+//   Used exclusively by src/utils/legiscan.js (one call per new/changed bill).
+//
+//   Note: Legistar (City Council) bills have their own inline transformer
+//   inside src/utils/legistar.js, since the Legistar data shape is different.
+//
+// What it does:
+//   - Detects topic category (housing, environment, education, etc.) from the
+//     bill title and subject tags → assigns emoji, gradient colors, and topic tags
+//   - Humanizes the title (strips "RELATING TO", converts to title case)
+//   - Extracts the next upcoming hearing date/time/location from the calendar
+//   - Formats the committee name with the correct chamber prefix (House/Senate)
+//   - Generates a fallback summary if the bill description is too short
+//
+// Input:  Raw LegiScan bill object (from getBill response → response.bill)
+// Output: Canonical bill shape used throughout the app (see src/data/bills.js
+//         for the full shape definition)
+// =============================================================================
 
 const TOPIC_STYLES = [
   {

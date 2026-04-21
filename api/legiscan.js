@@ -1,5 +1,25 @@
-// Vercel serverless function — proxies LegiScan requests
-// API key lives here on the server, never exposed to the browser
+// =============================================================================
+// api/legiscan.js — Vercel Serverless Proxy for LegiScan
+// =============================================================================
+// What it is:
+//   A server-side proxy function that sits between the browser and the
+//   LegiScan REST API. Because this runs on Vercel's servers (not in the
+//   browser), the secret API key is never exposed to end users.
+//
+// Data source:
+//   LegiScan REST API — https://api.legiscan.com/
+//   Account portal:   https://legiscan.com/legiscan
+//   API docs:         https://legiscan.com/gaits/documentation/legiscan
+//   Plan: Free public tier — 30,000 queries/month, resets the 1st of each month
+//
+// How it works:
+//   The browser calls /api/legiscan?op=getSearch&... (our own URL).
+//   This function receives that request, adds the secret API key from the
+//   Vercel environment variable LEGISCAN_KEY, forwards everything to
+//   https://api.legiscan.com/, and returns the raw JSON response.
+//
+// Covers: Hawaii State Legislature bills (HB = House Bills, SB = Senate Bills)
+// =============================================================================
 
 export default async function handler(req, res) {
   const { op, ...params } = req.query;

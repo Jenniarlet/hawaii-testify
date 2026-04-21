@@ -1,7 +1,29 @@
-// LegiScan API client
-// - Routes through /api/legiscan (Vercel serverless) to keep key server-side
-// - Caches bills in localStorage using change_hash to minimize query spend
-// - Falls back to mock bills if API is unavailable
+// =============================================================================
+// src/utils/legiscan.js — LegiScan API Client (Hawaii State Legislature)
+// =============================================================================
+// What it is:
+//   The browser-side client for fetching Hawaii State Legislature bills.
+//   Calls our own /api/legiscan proxy (never LegiScan directly) so the
+//   secret API key stays server-side.
+//
+// Data source:
+//   LegiScan REST API via /api/legiscan proxy → https://api.legiscan.com/
+//   Covers: HB (House Bills) and SB (Senate Bills) for the current Hawaii session
+//
+// Caching strategy (per LegiScan's own guidelines — "use the hashes"):
+//   1. On first load: calls getSearch (1 query) to get up to 20 bills + their change_hash
+//   2. Compares each bill's change_hash to what's stored in localStorage
+//   3. Only calls getBill (1 query each) for bills whose hash has changed (max 10)
+//   4. Unchanged bills are served directly from localStorage cache
+//   5. The full result set is cached for 6 hours before the next refresh cycle
+//   → Typical usage: ~9–11 queries on first load, then 1 query per 6-hour cycle
+//
+// localStorage keys used:
+//   ht_legiscan_cache  →  { bills, hashes, cachedAt }
+//
+// Fallback: if the API is unreachable (offline, quota exceeded, etc.),
+//   returns MOCK_BILLS from src/data/bills.js — app stays functional
+// =============================================================================
 
 import { MOCK_BILLS } from "../data/bills";
 import { transformBill } from "./billTransform";

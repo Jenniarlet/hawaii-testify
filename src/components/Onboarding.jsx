@@ -1,3 +1,22 @@
+// =============================================================================
+// src/components/Onboarding.jsx — First-Time Setup Flow (3 Steps)
+// =============================================================================
+// What it is:
+//   A 3-step onboarding screen shown only on a user's very first visit.
+//   Collects the user's island, community role, and topic interests.
+//   On completion, saves the profile to localStorage and hands off to the feed.
+//
+// Steps:
+//   1. Island    → which Hawaiian island the user is on (Oʻahu, Maui, etc.)
+//   2. Role      → community identity (resident, teacher, business owner, etc.)
+//                  Used to personalize the testimony letter voice
+//   3. Interests → up to 5 topic tags (housing, environment, education, etc.)
+//                  Used by SwipeFeed to surface relevant bills first
+//
+// After completion: profile saved via src/utils/storage.js → localStorage (ht_profile)
+// Returning users skip this screen entirely (App.jsx checks for saved profile on load)
+// =============================================================================
+
 import { useState } from "react";
 import { ISLANDS, ROLES, INTERESTS } from "../data/options";
 import { saveProfile } from "../utils/storage";

@@ -1,3 +1,28 @@
+// =============================================================================
+// src/components/TestimonyView.jsx — Generated Testimony Display
+// =============================================================================
+// What it is:
+//   Displays the complete, ready-to-submit testimony letter. The letter is
+//   generated on the fly by src/utils/testimony.js using the user's profile
+//   and their Prompts inputs — no API calls, runs entirely in the browser.
+//
+// What the user can do here:
+//   - Read their generated testimony
+//   - Copy it to clipboard (with a fallback for older mobile browsers)
+//   - Proceed to SubmitScreen for step-by-step submission instructions
+//   - Go back to Prompts to edit their responses
+//
+// The letter contains [bracketed] placeholders (name, address, contact) that
+// the user must fill in before submitting.
+//
+// Props:
+//   bill        → the selected bill (for header display and committee name)
+//   profile     → user profile (island + role used in letter body)
+//   promptData  → { stance, reason, story } from Prompts screen
+//   onBack      → returns to Prompts screen
+//   onSubmit    → advances to SubmitScreen
+// =============================================================================
+
 import { useState } from "react";
 import { generateTestimony } from "../utils/testimony";
 

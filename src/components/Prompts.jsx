@@ -1,3 +1,23 @@
+// =============================================================================
+// src/components/Prompts.jsx — Testimony Input Form
+// =============================================================================
+// What it is:
+//   The screen where the user fills in their testimony inputs after swiping
+//   right on a bill. Collects three things:
+//     1. Stance      → Support or Oppose (toggle)
+//     2. Reason      → Why this bill matters to them (up to 500 chars)
+//     3. Personal story → Optional lived experience (up to 600 chars)
+//
+// No API calls — purely a form that collects user input.
+// On submit, passes { stance, reason, story } up to App.jsx, which routes
+// to TestimonyView to generate the letter.
+//
+// Props:
+//   bill      → the bill object the user selected (for display context)
+//   onSubmit  → callback with { stance, reason, story }
+//   onSkip    → back button — returns to the SwipeFeed without submitting
+// =============================================================================
+
 import { useState } from "react";
 
 export default function Prompts({ bill, onSubmit, onSkip }) {
