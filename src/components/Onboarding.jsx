@@ -51,14 +51,14 @@ export default function Onboarding({ onComplete }) {
     (step === 2 && interests.length >= 3);
 
   return (
-    <div className="flex flex-col h-full bg-ocean-900 text-white">
+    <div className="flex flex-col h-full bg-cream text-charcoal">
       {/* Header */}
       <div className="px-6 pt-14 pb-6">
         {step === 0 && (
           <div>
             <div className="text-4xl mb-3">🌺</div>
-            <h1 className="text-2xl font-bold leading-tight">Welcome to HawaiiTestify</h1>
-            <p className="text-ocean-300 mt-2 text-sm leading-relaxed">
+            <h1 className="text-2xl font-bold font-serif leading-tight text-charcoal">Welcome to HawaiiTestify</h1>
+            <p className="text-muted mt-2 text-sm leading-relaxed">
               Your voice matters at the Hawaii State Legislature. Let's personalize your experience.
             </p>
           </div>
@@ -66,15 +66,15 @@ export default function Onboarding({ onComplete }) {
         {step === 1 && (
           <div>
             <div className="text-4xl mb-3">👋</div>
-            <h2 className="text-2xl font-bold leading-tight">What's your role in the community?</h2>
-            <p className="text-ocean-300 mt-2 text-sm">This helps us tailor your testimony voice.</p>
+            <h2 className="text-2xl font-bold font-serif leading-tight text-charcoal">What's your role in the community?</h2>
+            <p className="text-muted mt-2 text-sm">This helps us tailor your testimony voice.</p>
           </div>
         )}
         {step === 2 && (
           <div>
             <div className="text-4xl mb-3">🎯</div>
-            <h2 className="text-2xl font-bold leading-tight">What issues matter most to you?</h2>
-            <p className="text-ocean-300 mt-2 text-sm">Pick 3–5 topics. We'll show you the most relevant bills.</p>
+            <h2 className="text-2xl font-bold font-serif leading-tight text-charcoal">What issues matter most to you?</h2>
+            <p className="text-muted mt-2 text-sm">Pick 3–5 topics. We'll show you the most relevant bills.</p>
           </div>
         )}
       </div>
@@ -85,7 +85,7 @@ export default function Onboarding({ onComplete }) {
           <div
             key={i}
             className={`h-1 rounded-full flex-1 transition-all duration-300 ${
-              i <= step ? "bg-ocean-400" : "bg-ocean-700"
+              i <= step ? "bg-ocean" : "bg-sand-deep"
             }`}
           />
         ))}
@@ -95,7 +95,7 @@ export default function Onboarding({ onComplete }) {
       <div className="flex-1 overflow-y-auto px-6 pb-4">
         {step === 0 && (
           <div>
-            <p className="text-ocean-300 text-sm font-medium uppercase tracking-wider mb-3">
+            <p className="text-muted text-xs font-extrabold uppercase tracking-widest mb-3">
               Which island are you on?
             </p>
             <div className="grid grid-cols-2 gap-3">
@@ -105,12 +105,12 @@ export default function Onboarding({ onComplete }) {
                   onClick={() => setIsland(n.id)}
                   className={`flex items-center gap-3 p-4 rounded-2xl border-2 text-left transition-all duration-150 ${
                     island === n.id
-                      ? "border-ocean-400 bg-ocean-800 scale-[0.98]"
-                      : "border-ocean-700 bg-ocean-800/40"
+                      ? "border-ocean bg-white shadow-sm scale-[0.98]"
+                      : "border-border bg-white/60"
                   }`}
                 >
                   <span className="text-2xl">{n.emoji}</span>
-                  <span className="text-sm font-semibold leading-tight">{n.label}</span>
+                  <span className="text-sm font-semibold leading-tight text-charcoal">{n.label}</span>
                 </button>
               ))}
             </div>
@@ -125,12 +125,12 @@ export default function Onboarding({ onComplete }) {
                 onClick={() => setRole(r.id)}
                 className={`flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all duration-150 ${
                   role === r.id
-                    ? "border-ocean-400 bg-ocean-800 scale-[0.98]"
-                    : "border-ocean-700 bg-ocean-800/40"
+                    ? "border-ocean bg-white shadow-sm scale-[0.98]"
+                    : "border-border bg-white/60"
                 }`}
               >
                 <span className="text-2xl">{r.emoji}</span>
-                <span className="font-semibold">{r.label}</span>
+                <span className="font-semibold text-charcoal">{r.label}</span>
               </button>
             ))}
           </div>
@@ -149,10 +149,10 @@ export default function Onboarding({ onComplete }) {
                     disabled={maxed}
                     className={`flex items-center gap-2 px-4 py-3 rounded-full border-2 font-semibold text-sm transition-all duration-150 ${
                       selected
-                        ? "border-ocean-400 bg-ocean-600 text-white scale-95"
+                        ? "border-ocean bg-ocean text-white scale-95"
                         : maxed
-                        ? "border-ocean-800 bg-ocean-800/20 text-ocean-600 opacity-40"
-                        : "border-ocean-700 bg-ocean-800/40 text-ocean-200"
+                        ? "border-border bg-sand/30 text-muted opacity-40"
+                        : "border-border bg-white text-charcoal"
                     }`}
                   >
                     <span>{interest.emoji}</span>
@@ -162,7 +162,7 @@ export default function Onboarding({ onComplete }) {
               })}
             </div>
             {interests.length > 0 && (
-              <p className="text-ocean-400 text-xs mt-4">
+              <p className="text-muted text-xs mt-4">
                 {interests.length}/5 selected
                 {interests.length < 3 ? ` — pick ${3 - interests.length} more` : " — looks great!"}
               </p>
@@ -176,10 +176,10 @@ export default function Onboarding({ onComplete }) {
         <button
           onClick={handleNext}
           disabled={!canProceed}
-          className={`w-full py-4 rounded-2xl font-bold text-lg transition-all duration-200 ${
+          className={`w-full py-4 rounded-full font-bold text-lg transition-all duration-200 ${
             canProceed
-              ? "bg-ocean-500 text-white shadow-lg shadow-ocean-900/50 active:scale-95"
-              : "bg-ocean-800 text-ocean-600 cursor-not-allowed"
+              ? "bg-coral text-white shadow-lg shadow-charcoal/20 active:scale-95"
+              : "bg-sand text-muted cursor-not-allowed"
           }`}
         >
           {step === STEPS.length - 1 ? "Let's Go →" : "Continue →"}

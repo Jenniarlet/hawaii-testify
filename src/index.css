@@ -1,41 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ocean-50: #f0f9ff;
-  --color-ocean-100: #e0f2fe;
-  --color-ocean-200: #bae6fd;
-  --color-ocean-300: #7dd3fc;
-  --color-ocean-400: #38bdf8;
-  --color-ocean-500: #0ea5e9;
-  --color-ocean-600: #0284c7;
-  --color-ocean-700: #0369a1;
-  --color-ocean-800: #075985;
-  --color-ocean-900: #0c4a6e;
+  /* ── Aloha Collective Brand Palette (Mayu Systems) ─────────────────────── */
+  --color-coral:        #EE6C4D;   /* Primary CTA buttons, urgent actions     */
+  --color-coral-deep:   #D9563A;   /* Hover / pressed states                  */
+  --color-ocean:        #1F6F78;   /* Brand teal — links, badges, verified    */
+  --color-seafoam:      #9CC9C3;   /* Secondary accents, tag backgrounds      */
+  --color-plumeria:     #F4C95D;   /* Progress fills, highlights, gov markers */
+  --color-sand:         #F6EDE3;   /* Card backgrounds, section backgrounds   */
+  --color-sand-deep:    #f2e4d8;   /* Progress track, dividers                */
+  --color-cream:        #FFF9F2;   /* Page / app background                   */
+  --color-leaf:         #4D7A5A;   /* CITY badge, support/testify actions     */
+  --color-leaf-deep:    #3a5c44;   /* Leaf hover state                        */
+  --color-charcoal:     #1F2933;   /* Body text, headings                     */
+  --color-muted:        #5A6772;   /* Secondary text, metadata                */
+  --color-border:       #E6D9CB;   /* Card borders, dividers                  */
 
-  --color-palm-50: #f0fdf4;
-  --color-palm-100: #dcfce7;
-  --color-palm-200: #bbf7d0;
-  --color-palm-300: #86efac;
-  --color-palm-400: #4ade80;
-  --color-palm-500: #22c55e;
-  --color-palm-600: #16a34a;
-  --color-palm-700: #15803d;
-  --color-palm-800: #166534;
-  --color-palm-900: #14532d;
+  /* ── Island badge colors ───────────────────────────────────────────────── */
+  --color-island-oahu:    #1F6F78;
+  --color-island-maui:    #EE6C4D;
+  --color-island-hawaii:  #4D7A5A;
+  --color-island-kauai:   #7C3AED;
+  --color-island-molokai: #B45309;
+  --color-island-gov:     #5B4E8C;
 
-  --color-coral-50: #fff1f2;
-  --color-coral-100: #ffe4e6;
-  --color-coral-400: #fb7185;
-  --color-coral-500: #f43f5e;
-  --color-coral-600: #e11d48;
-
-  --color-sand-50: #fefce8;
-  --color-sand-100: #fef9c3;
-  --color-sand-200: #fef08a;
-  --color-sand-400: #facc15;
-  --color-sand-500: #eab308;
-
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  /* ── Typography ─────────────────────────────────────────────────────────── */
+  --font-sans:   'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-serif:  'Fraunces', Georgia, serif;
 }
 
 * {
@@ -48,7 +39,7 @@ html, body, #root {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: #0c4a6e;
+  background: #FFF9F2;
 }
 
 body {
@@ -64,11 +55,11 @@ body {
   width: 4px;
 }
 .testimony-scroll::-webkit-scrollbar-track {
-  background: #e0f2fe;
+  background: #F6EDE3;
   border-radius: 2px;
 }
 .testimony-scroll::-webkit-scrollbar-thumb {
-  background: #0ea5e9;
+  background: #9CC9C3;
   border-radius: 2px;
 }
 

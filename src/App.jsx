@@ -99,24 +99,24 @@ export default function App() {
 
   if (screen === "loading") {
     return (
-      <div className="flex items-center justify-center h-full bg-ocean-900">
+      <div className="flex items-center justify-center h-full bg-cream">
         <div className="text-4xl animate-pulse">🌺</div>
       </div>
     );
   }
 
   return (
-    <div className="h-full max-w-md mx-auto relative overflow-hidden bg-ocean-900 shadow-2xl">
+    <div className="h-full max-w-md mx-auto relative overflow-hidden bg-cream shadow-2xl">
       {screen === "onboarding" && (
         <Onboarding onComplete={handleOnboardingComplete} />
       )}
 
       {screen === "feed" && (
         billsLoading ? (
-          <div className="flex flex-col items-center justify-center h-full bg-ocean-900 gap-4">
+          <div className="flex flex-col items-center justify-center h-full bg-cream gap-4">
             <div className="text-5xl animate-pulse">🌺</div>
-            <p className="text-ocean-300 text-sm font-medium">Loading Hawaii bills…</p>
-            <p className="text-ocean-600 text-xs">State Legislature + Honolulu City Council</p>
+            <p className="text-charcoal text-sm font-medium">Loading Hawaii bills…</p>
+            <p className="text-muted text-xs font-extrabold uppercase tracking-widest">State Legislature + Honolulu City Council</p>
           </div>
         ) : (
           <SwipeFeed

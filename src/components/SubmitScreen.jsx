@@ -65,14 +65,14 @@ export default function SubmitScreen({ bill, onDone }) {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-ocean-900">
+    <div className="flex flex-col h-full bg-cream">
       {/* Header */}
       <div
         className="px-6 pt-14 pb-8"
-        style={{ background: `linear-gradient(180deg, ${bill.gradientFrom} 0%, #0c4a6e 100%)` }}
+        style={{ background: `linear-gradient(180deg, ${bill.gradientFrom} 0%, ${bill.gradientTo} 100%)` }}
       >
         <div className="text-4xl mb-3">{bill.emoji}</div>
-        <h2 className="text-white text-2xl font-bold leading-tight">You're Ready to Testify!</h2>
+        <h2 className="text-white text-2xl font-bold font-serif leading-tight">You're Ready to Testify!</h2>
         <p className="text-white/70 text-sm mt-2">
           {bill.type} {bill.number} · {bill.hearingDate}
         </p>
@@ -84,26 +84,26 @@ export default function SubmitScreen({ bill, onDone }) {
 
       {/* Steps */}
       <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
-        <p className="text-ocean-300 text-xs font-semibold uppercase tracking-wider">
+        <p className="text-muted text-xs font-extrabold uppercase tracking-widest">
           How to submit your testimony
         </p>
 
         {steps.map((step) => (
-          <div key={step.number} className="bg-ocean-800 rounded-2xl p-4">
+          <div key={step.number} className="bg-white rounded-2xl p-4 border border-border" style={{ boxShadow: "0 2px 8px rgba(31,41,51,0.06)" }}>
             <div className="flex items-start gap-4">
-              <div className="w-8 h-8 rounded-full bg-ocean-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-8 h-8 rounded-full bg-sand flex items-center justify-center flex-shrink-0 mt-0.5">
                 <span className="text-lg">{step.icon}</span>
               </div>
               <div className="flex-1 min-w-0">
-                <span className="text-ocean-500 text-xs font-bold">STEP {step.number}</span>
-                <p className="text-white font-semibold text-sm mb-1 mt-0.5">{step.title}</p>
-                <p className="text-ocean-400 text-xs leading-relaxed">{step.description}</p>
+                <span className="text-muted text-xs font-extrabold uppercase tracking-widest">STEP {step.number}</span>
+                <p className="text-charcoal font-semibold text-sm mb-1 mt-0.5">{step.title}</p>
+                <p className="text-muted text-xs leading-relaxed">{step.description}</p>
                 {step.action && (
                   <a
                     href={step.action.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center mt-2 text-ocean-400 text-xs font-semibold border border-ocean-600 rounded-full px-3 py-1.5"
+                    className="inline-flex items-center mt-2 text-ocean text-xs font-semibold border border-ocean rounded-full px-3 py-1.5"
                   >
                     {step.action.label}
                   </a>
@@ -113,10 +113,10 @@ export default function SubmitScreen({ bill, onDone }) {
           </div>
         ))}
 
-        <div className="bg-gradient-to-r from-palm-900 to-ocean-900 border border-palm-800 rounded-2xl p-5 text-center">
+        <div className="bg-gradient-to-r from-sand to-cream border border-border rounded-2xl p-5 text-center">
           <div className="text-3xl mb-2">🌺</div>
-          <p className="text-white font-bold mb-1">Mahalo for your civic engagement!</p>
-          <p className="text-ocean-400 text-xs leading-relaxed">
+          <p className="text-charcoal font-bold font-serif mb-1">Mahalo for your civic engagement!</p>
+          <p className="text-muted text-xs leading-relaxed">
             Every testimony matters. Hawaii legislators are required to read all submitted written testimony before voting.
           </p>
         </div>
@@ -126,7 +126,7 @@ export default function SubmitScreen({ bill, onDone }) {
       <div className="px-6 pb-10 pt-4">
         <button
           onClick={onDone}
-          className="w-full py-4 rounded-2xl font-bold text-lg bg-ocean-500 text-white shadow-lg active:scale-95 transition-transform"
+          className="w-full py-4 rounded-full font-bold text-lg bg-coral text-white shadow-lg shadow-charcoal/20 active:scale-95 transition-transform"
         >
           Review More Bills
         </button>
