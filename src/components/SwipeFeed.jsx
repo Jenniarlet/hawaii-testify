@@ -156,7 +156,18 @@ export default function SwipeFeed({ bills, profile, onSwipeRight, onAllDone }) {
                     <span className="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
                       {bill.type} {bill.number}
                     </span>
-                    <span className="text-4xl">{bill.emoji}</span>
+                    <div className="flex items-center gap-2">
+                      {bill.source === "county" ? (
+                        <span className="bg-palm-500/80 text-white text-xs font-bold px-2 py-0.5 rounded-full backdrop-blur-sm">
+                          CITY
+                        </span>
+                      ) : (
+                        <span className="bg-ocean-500/80 text-white text-xs font-bold px-2 py-0.5 rounded-full backdrop-blur-sm">
+                          STATE
+                        </span>
+                      )}
+                      <span className="text-4xl">{bill.emoji}</span>
+                    </div>
                   </div>
                   <h2 className="text-white text-xl font-bold leading-tight mb-2">{bill.plainTitle}</h2>
                   <p className="text-white/70 text-xs font-medium">{bill.title}</p>

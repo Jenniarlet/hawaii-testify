@@ -14,6 +14,7 @@ export const MOCK_BILLS = [
     stateLink: "https://www.capitol.hawaii.gov/",
     tags: ["housing"], emoji: "🏠",
     gradientFrom: "#075985", gradientTo: "#0c4a6e",
+    source: "state",
   },
   {
     id: "mock-sb456",
@@ -27,6 +28,7 @@ export const MOCK_BILLS = [
     stateLink: "https://www.capitol.hawaii.gov/",
     tags: ["environment"], emoji: "☀️",
     gradientFrom: "#166534", gradientTo: "#052e16",
+    source: "state",
   },
   {
     id: "mock-hb789",
@@ -40,6 +42,7 @@ export const MOCK_BILLS = [
     stateLink: "https://www.capitol.hawaii.gov/",
     tags: ["education"], emoji: "📚",
     gradientFrom: "#92400e", gradientTo: "#451a03",
+    source: "state",
   },
   {
     id: "mock-sb321",
@@ -53,6 +56,7 @@ export const MOCK_BILLS = [
     stateLink: "https://www.capitol.hawaii.gov/",
     tags: ["healthcare"], emoji: "❤️‍🩹",
     gradientFrom: "#9f1239", gradientTo: "#4c0519",
+    source: "state",
   },
   {
     id: "mock-hb567",
@@ -66,6 +70,7 @@ export const MOCK_BILLS = [
     stateLink: "https://www.capitol.hawaii.gov/",
     tags: ["small business"], emoji: "🛍️",
     gradientFrom: "#6d28d9", gradientTo: "#3b0764",
+    source: "state",
   },
   {
     id: "mock-sb890",
@@ -79,6 +84,7 @@ export const MOCK_BILLS = [
     stateLink: "https://www.capitol.hawaii.gov/",
     tags: ["Native Hawaiian rights"], emoji: "🌺",
     gradientFrom: "#9f1239", gradientTo: "#4c0519",
+    source: "state",
   },
   {
     id: "mock-hb1949",
@@ -92,6 +98,7 @@ export const MOCK_BILLS = [
     stateLink: "https://www.capitol.hawaii.gov/session/measure_indiv.aspx?billtype=HB&billnumber=1949&year=2026",
     tags: ["tourism", "environment"], emoji: "🐠",
     gradientFrom: "#0f766e", gradientTo: "#134e4a",
+    source: "state",
   },
   {
     id: "mock-sb2361",
@@ -105,5 +112,52 @@ export const MOCK_BILLS = [
     stateLink: "https://www.capitol.hawaii.gov/session/measure_indiv.aspx?billtype=SB&billnumber=2361&year=2026",
     tags: ["environment"], emoji: "🌊",
     gradientFrom: "#1d4ed8", gradientTo: "#1e3a8a",
+    source: "state",
+  },
+];
+
+// Fallback mock data for Honolulu City Council bills (shown when Legistar API is unavailable).
+export const MOCK_COUNTY_BILLS = [
+  {
+    id: "mock-legistar-101",
+    type: "Bill", number: "50",
+    title: "RELATING TO SHORT-TERM RENTALS IN RESIDENTIAL ZONES",
+    plainTitle: "Restrict Vacation Rentals in Honolulu Neighborhoods",
+    summary: "Limits short-term rental permits in residential-zoned areas on Oʻahu, requiring owner-occupancy and capping the number of units per neighborhood to protect long-term housing supply.",
+    committee: "Zoning and Planning Committee",
+    hearingDate: "Hearing date TBD", hearingTime: "",
+    location: "Honolulu Hale, 530 S King St",
+    stateLink: "https://honolulu.legistar.com/",
+    tags: ["housing"], emoji: "🏠",
+    gradientFrom: "#075985", gradientTo: "#0c4a6e",
+    source: "county",
+  },
+  {
+    id: "mock-legistar-102",
+    type: "Res", number: "25-180",
+    title: "SUPPORTING RAIL TRANSIT COMPLETION AND FUNDING",
+    plainTitle: "Fund the Honolulu Rail Through Completion",
+    summary: "Urges the state and federal government to provide stable funding to complete the Skyline rail extension from Halawa to Ala Moana, reducing traffic congestion and carbon emissions across Oʻahu.",
+    committee: "Transportation Committee",
+    hearingDate: "Hearing date TBD", hearingTime: "",
+    location: "Honolulu Hale, 530 S King St",
+    stateLink: "https://honolulu.legistar.com/",
+    tags: ["transportation"], emoji: "🚌",
+    gradientFrom: "#1d4ed8", gradientTo: "#1e3a8a",
+    source: "county",
+  },
+  {
+    id: "mock-legistar-103",
+    type: "Bill", number: "18",
+    title: "RELATING TO TREE CANOPY PRESERVATION",
+    plainTitle: "Protect Honolulu's Urban Tree Canopy",
+    summary: "Requires a replacement permit and 2-for-1 replanting for any mature tree removal on city-managed land, expanding Oʻahu's urban forest to combat heat island effects and stormwater runoff.",
+    committee: "Parks and Recreation Committee",
+    hearingDate: "Hearing date TBD", hearingTime: "",
+    location: "Honolulu Hale, 530 S King St",
+    stateLink: "https://honolulu.legistar.com/",
+    tags: ["environment"], emoji: "🌿",
+    gradientFrom: "#0f766e", gradientTo: "#134e4a",
+    source: "county",
   },
 ];

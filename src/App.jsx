@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getProfile } from "./utils/storage";
 import { fetchHawaiiBills } from "./utils/legiscan";
+import { fetchHonoluluBills } from "./utils/legistar";
 import Onboarding from "./components/Onboarding";
 import SwipeFeed from "./components/SwipeFeed";
 import Prompts from "./components/Prompts";
@@ -16,10 +17,10 @@ export default function App() {
   const [promptData, setPromptData] = useState(null);
   const [feedKey, setFeedKey] = useState(0);
 
-  // Load bills from LegiScan (or mock fallback) on mount
+  // Load bills from both LegiScan (state) and Legistar (Honolulu City Council) on mount
   useEffect(() => {
-    fetchHawaiiBills().then((b) => {
-      setBills(b);
+    Promise.all([fetchHawaiiBills(), fetchHonoluluBills()]).then(([state, county]) => {
+      setBills([...state, ...county]);
       setBillsLoading(false);
     });
   }, []);
@@ -88,8 +89,8 @@ export default function App() {
         billsLoading ? (
           <div className="flex flex-col items-center justify-center h-full bg-ocean-900 gap-4">
             <div className="text-5xl animate-pulse">🌺</div>
-            <p className="text-ocean-300 text-sm font-medium">Loading Hawaii State Legislature bills…</p>
-            <p className="text-ocean-600 text-xs">Powered by LegiScan</p>
+            <p className="text-ocean-300 text-sm font-medium">Loading Hawaii bills…</p>
+            <p className="text-ocean-600 text-xs">State Legislature + Honolulu City Council</p>
           </div>
         ) : (
           <SwipeFeed
