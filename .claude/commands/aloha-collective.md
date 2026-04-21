@@ -1,6 +1,6 @@
-# /mayu-brand — Aloha Collective Brand System (Mayu Systems)
+# /aloha-collective — Aloha Collective Brand Guide (by Mayu Systems)
 
-Apply the Mayu Systems / Aloha Collective design language to this project.
+Apply the Aloha Collective design language (by Mayu Systems) to this project.
 Created by Jenn Moura for social activism, mutual aid, and community coordination apps.
 
 ---
