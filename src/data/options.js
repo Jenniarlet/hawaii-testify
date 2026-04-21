@@ -1,3 +1,22 @@
+// =============================================================================
+// src/data/options.js — Onboarding Picklist Data
+// =============================================================================
+// What it is:
+//   Static lists of options shown during the 3-step onboarding flow.
+//   No API — this is hardcoded reference data that rarely changes.
+//
+// Exports:
+//   ISLANDS    →  The 6 main Hawaiian islands (used in step 1 of onboarding)
+//   ROLES      →  Community roles (resident, teacher, etc.) — used in step 2
+//                 Role is embedded in the testimony letter ("As a teacher...")
+//   INTERESTS  →  Topic tags (housing, environment, etc.) — used in step 3
+//                 Matched against bill.tags[] in SwipeFeed to surface relevant
+//                 bills first in the swipe stack
+//
+// Used by: src/components/Onboarding.jsx
+//          src/utils/testimony.js (ROLE_LABELS maps role id → letter text)
+// =============================================================================
+
 export const ISLANDS = [
   { id: "oahu", label: "Oʻahu", emoji: "🌆" },
   { id: "maui", label: "Maui", emoji: "🌄" },

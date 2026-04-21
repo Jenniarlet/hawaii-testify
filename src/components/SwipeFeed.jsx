@@ -1,3 +1,32 @@
+// =============================================================================
+// src/components/SwipeFeed.jsx — Tinder-Style Bill Swipe UI
+// =============================================================================
+// What it is:
+//   The main browsing screen. Displays bills as a stack of swipeable cards.
+//   Powered by react-spring (animation) and @use-gesture/react (touch/drag).
+//
+// Interaction:
+//   Swipe LEFT  (or tap ✕) → skip the bill, move to the next one
+//   Swipe RIGHT (or tap ✓) → select the bill → triggers testimony flow in App.jsx
+//   Threshold: 100px drag distance OR velocity > 0.5
+//
+// Bill ordering:
+//   Bills whose topic tags match the user's selected interests (from onboarding)
+//   are moved to the front of the stack. Other bills follow after.
+//
+// Source badges on each card:
+//   STATE (blue)  → Hawaii State Legislature bill (HB / SB)
+//                   Submitted to: https://www.capitol.hawaii.gov/
+//   CITY  (green) → Honolulu City Council bill (Bill / Resolution / Ordinance)
+//                   Submitted to: https://honolulucitycouncil.org/
+//
+// Props:
+//   bills[]       → merged array of state + county bills from App.jsx
+//   profile       → user profile (used for interest-based ordering)
+//   onSwipeRight  → callback with the selected bill object
+//   onAllDone     → callback when every card has been swiped
+// =============================================================================
+
 import { useState } from "react";
 import { useSprings, animated } from "react-spring";
 import { useDrag } from "@use-gesture/react";

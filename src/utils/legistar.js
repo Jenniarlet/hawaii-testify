@@ -1,3 +1,33 @@
+// =============================================================================
+// src/utils/legistar.js — Legistar API Client (Honolulu City Council)
+// =============================================================================
+// What it is:
+//   The browser-side client for fetching Honolulu City Council legislation.
+//   Calls our /api/legistar proxy, which forwards requests to the public
+//   Legistar (Granicus) API. No API key required.
+//
+// Data source:
+//   Legistar Web API via /api/legistar proxy → https://webapi.legistar.com/v1/honolulu/
+//   Public portal: https://honolulu.legistar.com/
+//   Covers: Bills, Resolutions, and Ordinances currently "In Committee" at the
+//           Honolulu City Council (Oʻahu only — other counties use separate portals)
+//
+// What Honolulu City Council covers (vs. State Legislature):
+//   City Council → Oʻahu-specific: zoning, property rules, TheBus/rail funding,
+//                  local parks, Honolulu fees and permits, city budget
+//   State Legislature → Statewide: education, healthcare, taxes, environment
+//
+// Caching strategy:
+//   Simple time-based cache (no hash comparison — Legistar has no equivalent).
+//   Results are stored in localStorage for 6 hours.
+//
+// localStorage keys used:
+//   ht_legistar_cache  →  { bills, cachedAt }
+//
+// Fallback: if the API is unreachable, returns MOCK_COUNTY_BILLS from
+//   src/data/bills.js — app stays functional without live data
+// =============================================================================
+
 import { MOCK_COUNTY_BILLS } from "../data/bills";
 
 const CACHE_KEY = "ht_legistar_cache";

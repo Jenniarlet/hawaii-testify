@@ -1,3 +1,29 @@
+// =============================================================================
+// src/utils/testimony.js — Testimony Letter Generator
+// =============================================================================
+// What it is:
+//   Generates a complete, ready-to-submit written testimony letter from the
+//   user's profile (island, role) and their prompt responses (stance, reason,
+//   personal story). Runs entirely in the browser — no API calls.
+//
+// How it works:
+//   Template-based generation with randomized openers and closers so repeated
+//   use produces varied letters. The structure follows the standard format
+//   accepted by the Hawaii State Legislature and Honolulu City Council:
+//     Date → Addressed to the committee → Aloha greeting → Identity statement
+//     → Position statement → Personal reasoning → Personal story → Closing
+//
+// Called by: src/components/TestimonyView.jsx
+//
+// Output: Plain text string ready to copy and paste into the legislature's
+//   submission form or email. User fills in [bracketed] placeholders
+//   (name, address, contact info) before submitting.
+//
+// Submit to (State Legislature): https://www.capitol.hawaii.gov/
+//   Email: testimony@capitol.hawaii.gov
+// Submit to (Honolulu City Council): https://honolulucitycouncil.org/
+// =============================================================================
+
 const ROLE_LABELS = {
   resident: "a Hawaii resident",
   parent: "a parent of children in Hawaii",

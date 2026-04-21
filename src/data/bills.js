@@ -1,5 +1,30 @@
-// These mock bills serve as fallback data when the LegiScan API is unavailable.
-// In production, live Hawaii State Legislature bills are fetched from LegiScan.
+// =============================================================================
+// src/data/bills.js — Mock Fallback Bill Data
+// =============================================================================
+// What it is:
+//   Hardcoded bill objects used as fallback data when the live APIs are
+//   unavailable (offline, quota exceeded, local dev without Vercel functions).
+//   The app automatically falls back to these — users never see an error screen.
+//
+// Exports:
+//   MOCK_BILLS         →  8 Hawaii State Legislature bills (HB/SB)
+//                         Shown when LegiScan API is unreachable
+//                         In production, real bills from https://api.legiscan.com/ replace these
+//
+//   MOCK_COUNTY_BILLS  →  3 Honolulu City Council bills (Bills/Resolutions)
+//                         Shown when Legistar API is unreachable
+//                         In production, real bills from https://webapi.legistar.com/v1/honolulu/ replace these
+//
+// Canonical bill shape (all fields every component expects):
+//   { id, type, number, title, plainTitle, summary, committee,
+//     hearingDate, hearingTime, location, stateLink, tags, emoji,
+//     gradientFrom, gradientTo, source }
+//   source: "state" = Hawaii State Legislature | "county" = Honolulu City Council
+//
+// ⚠️  Bill numbers are session-specific. Verify any mock bill numbers against:
+//     Hawaii Legislature: https://www.capitol.hawaii.gov/
+//     LegiScan Hawaii:    https://legiscan.com/HI
+// =============================================================================
 
 export const MOCK_BILLS = [
   {

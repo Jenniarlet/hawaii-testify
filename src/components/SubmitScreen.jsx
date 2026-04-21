@@ -1,3 +1,29 @@
+// =============================================================================
+// src/components/SubmitScreen.jsx — Submission Instructions
+// =============================================================================
+// What it is:
+//   The final step. Shows the user exactly how to submit their testimony,
+//   with direct links to the relevant government website and pre-filled
+//   email links. No API calls — purely informational.
+//
+// Steps shown:
+//   1. Copy testimony (reminder to fill in [bracketed] fields)
+//   2. Submit online at the bill's official page (bill.stateLink)
+//   3. Or email testimony@capitol.hawaii.gov with bill number in subject
+//   4. Submit before the hearing deadline (bill.hearingDate)
+//   5. Optional: testify in person or via Zoom at the hearing
+//
+// Submission destinations:
+//   State bills  → https://www.capitol.hawaii.gov/ + testimony@capitol.hawaii.gov
+//   County bills → Currently links to the Legistar detail page (bill.stateLink).
+//                  Future: add City Council-specific submission path at
+//                  https://honolulucitycouncil.org/
+//
+// Props:
+//   bill    → the selected bill (committee, dates, links, location)
+//   onDone  → returns user to SwipeFeed to review more bills
+// =============================================================================
+
 export default function SubmitScreen({ bill, onDone }) {
   const subject = encodeURIComponent(`Testimony on ${bill.type} ${bill.number} — ${bill.title}`);
   const committeeEmail = "testimony@capitol.hawaii.gov";

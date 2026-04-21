@@ -1,3 +1,29 @@
+// =============================================================================
+// src/App.jsx — Root Component & App-Level State Manager
+// =============================================================================
+// What it is:
+//   The single top-level React component. Owns all shared state and controls
+//   which screen is currently visible. Acts as the router for this single-page app.
+//
+// Screen flow:
+//   loading → onboarding (first time only) → feed → prompts → testimony → submit
+//                ↑__________________________________________↓  (loop back)
+//
+// Data fetching:
+//   On mount, fetches bills from TWO sources in parallel:
+//     1. LegiScan (Hawaii State Legislature) via src/utils/legiscan.js
+//        → calls /api/legiscan → https://api.legiscan.com/
+//     2. Legistar (Honolulu City Council) via src/utils/legistar.js
+//        → calls /api/legistar → https://webapi.legistar.com/v1/honolulu/
+//   Results are merged into one bills[] array passed to SwipeFeed.
+//
+// State managed here (passed down as props):
+//   bills[]       → all fetched bills (state + county, merged)
+//   profile       → user's onboarding answers (island, role, interests)
+//   selectedBill  → the bill the user swiped right on
+//   promptData    → stance/reason/story collected in Prompts screen
+// =============================================================================
+
 import { useState, useEffect } from "react";
 import { getProfile } from "./utils/storage";
 import { fetchHawaiiBills } from "./utils/legiscan";
